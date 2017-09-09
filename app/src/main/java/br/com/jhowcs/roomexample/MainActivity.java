@@ -13,6 +13,10 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import br.com.jhowcs.roomexample.repository.local.DatabaseProvider;
+import br.com.jhowcs.roomexample.repository.local.User;
+import br.com.jhowcs.roomexample.repository.local.UserDao;
+
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener, UserRegisterDialog.OnUserRegistered {
 
@@ -44,7 +48,7 @@ public class MainActivity extends AppCompatActivity
 
         setupAdapter();
 
-        mDao = ((CustomApplication)getApplication()).getDatabase().userDao();
+        mDao = DatabaseProvider.getDatabase().userDao();
         executor.execute(getUserList());
     }
 

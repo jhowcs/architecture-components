@@ -15,6 +15,10 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import br.com.jhowcs.roomexample.repository.local.DatabaseProvider;
+import br.com.jhowcs.roomexample.repository.local.User;
+import br.com.jhowcs.roomexample.repository.local.UserDao;
+
 public class UserRegisterDialog extends DialogFragment implements View.OnClickListener {
 
     private static final String TAG = "UserRegisterDialog";
@@ -63,8 +67,7 @@ public class UserRegisterDialog extends DialogFragment implements View.OnClickLi
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        CustomApplication customApplication = (CustomApplication) getActivity().getApplication();
-        mDao = customApplication.getDatabase().userDao();
+        mDao = DatabaseProvider.getDatabase().userDao();
 
         threadPoolExecutor.execute(queryMaxId());
         threadPoolExecutor.execute(queryFromDatabase());

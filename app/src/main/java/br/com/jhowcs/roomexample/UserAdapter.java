@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import br.com.jhowcs.roomexample.repository.local.User;
+
 public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<User> userList;
