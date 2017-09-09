@@ -14,7 +14,7 @@ public interface UserDao {
     List<User> getAll();
 
     @Query("SELECT * FROM user WHERE id = :id")
-    List<User> getById(int id);
+    User getById(int id);
 
     @Query("SELECT * FROM User WHERE first_name LIKE :names OR last_name LIKE :names ")
     List<User> getByNames(String names);
