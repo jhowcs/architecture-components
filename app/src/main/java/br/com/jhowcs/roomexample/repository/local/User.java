@@ -1,4 +1,4 @@
-package br.com.jhowcs.roomexample;
+package br.com.jhowcs.roomexample.repository.local;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

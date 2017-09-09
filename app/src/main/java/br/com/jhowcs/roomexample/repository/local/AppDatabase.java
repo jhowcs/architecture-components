@@ -1,4 +1,4 @@
-package br.com.jhowcs.roomexample;
+package br.com.jhowcs.roomexample.repository.local;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
