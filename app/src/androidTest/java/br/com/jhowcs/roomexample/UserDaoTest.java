@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.jhowcs.roomexample.repository.local.AppDatabase;
-import br.com.jhowcs.roomexample.repository.local.User;
-import br.com.jhowcs.roomexample.repository.local.UserDao;
+import br.com.jhowcs.roomexample.repository.local.user.User;
+import br.com.jhowcs.roomexample.repository.local.user.UserDao;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;

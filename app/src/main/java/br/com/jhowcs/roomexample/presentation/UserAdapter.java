@@ -1,4 +1,4 @@
-package br.com.jhowcs.roomexample;
+package br.com.jhowcs.roomexample.presentation;
 
 import android.arch.lifecycle.LiveData;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import br.com.jhowcs.roomexample.repository.local.User;
+import br.com.jhowcs.roomexample.R;
+import br.com.jhowcs.roomexample.repository.local.user.User;
 
 public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

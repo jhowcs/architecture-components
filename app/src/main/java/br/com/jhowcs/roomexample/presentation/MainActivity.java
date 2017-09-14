@@ -1,4 +1,4 @@
-package br.com.jhowcs.roomexample;
+package br.com.jhowcs.roomexample.presentation;
 
 import android.arch.lifecycle.LifecycleActivity;
 import android.arch.lifecycle.ViewModelProviders;
@@ -10,7 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import br.com.jhowcs.roomexample.repository.local.User;
+import br.com.jhowcs.roomexample.R;
+import br.com.jhowcs.roomexample.repository.local.user.User;
 
 public class MainActivity extends LifecycleActivity
         implements View.OnClickListener, UserRegisterDialog.OnUserRegistered {
@@ -26,7 +27,7 @@ public class MainActivity extends LifecycleActivity
     private RecyclerView rvUser;
     private UserAdapter adapter;
 
-    private  UserViewModel viewModel;
+    private UserViewModel viewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

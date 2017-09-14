@@ -1,4 +1,4 @@
-package br.com.jhowcs.roomexample;
+package br.com.jhowcs.roomexample.presentation;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,9 +15,10 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import br.com.jhowcs.roomexample.R;
 import br.com.jhowcs.roomexample.repository.local.DatabaseProvider;
-import br.com.jhowcs.roomexample.repository.local.User;
-import br.com.jhowcs.roomexample.repository.local.UserDao;
+import br.com.jhowcs.roomexample.repository.local.user.User;
+import br.com.jhowcs.roomexample.repository.local.user.UserDao;
 
 public class UserRegisterDialog extends DialogFragment implements View.OnClickListener {
 

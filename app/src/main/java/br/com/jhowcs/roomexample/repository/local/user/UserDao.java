@@ -1,4 +1,4 @@
-package br.com.jhowcs.roomexample.repository.local;
+package br.com.jhowcs.roomexample.repository.local.user;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
