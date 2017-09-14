@@ -1,23 +1,18 @@
 package br.com.jhowcs.roomexample;
 
+import android.arch.lifecycle.LifecycleActivity;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-
-import br.com.jhowcs.roomexample.repository.local.DatabaseProvider;
 import br.com.jhowcs.roomexample.repository.local.User;
-import br.com.jhowcs.roomexample.repository.local.UserDao;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends LifecycleActivity
         implements View.OnClickListener, UserRegisterDialog.OnUserRegistered {
 
     private static final String TAG = "MainActivity";
@@ -31,10 +26,7 @@ public class MainActivity extends AppCompatActivity
     private RecyclerView rvUser;
     private UserAdapter adapter;
 
-    private UserDao mDao;
-
-    ThreadPoolExecutor executor = new ThreadPoolExecutor(2,2,0, TimeUnit.SECONDS,
-            new LinkedBlockingQueue<Runnable>());
+    private  UserViewModel viewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,15 +38,17 @@ public class MainActivity extends AppCompatActivity
 
         fab.setOnClickListener(this);
 
+        viewModel = ViewModelProviders.of(this).get(UserViewModel.class);
+        viewModel.init();
+
         setupAdapter();
 
-        mDao = DatabaseProvider.getDatabase().userDao();
-        executor.execute(getUserList());
     }
 
     private void setupAdapter() {
         adapter = new UserAdapter();
         LinearLayoutManager llm = new LinearLayoutManager(this);
+        adapter.setUserList(viewModel.getAllUser());
         rvUser.setAdapter(adapter);
         rvUser.setLayoutManager(llm);
     }
@@ -66,16 +60,6 @@ public class MainActivity extends AppCompatActivity
             registerDialog = UserRegisterDialog.newInstance(this);
             registerDialog.show(fm, tagRegisterDialog);
         }
-    }
-
-    private Runnable getUserList() {
-        return new Runnable() {
-            @Override
-            public void run() {
-                adapter.setUserList(mDao.getAll());
-                adapter.notifyDataSetChanged();
-            }
-        };
     }
 
     @Override

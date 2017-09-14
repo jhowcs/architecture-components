@@ -1,5 +1,6 @@
 package br.com.jhowcs.roomexample;
 
+import android.arch.lifecycle.LiveData;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,14 +13,14 @@ import br.com.jhowcs.roomexample.repository.local.User;
 
 public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<User> userList;
+    private LiveData<List<User>> userList;
 
-    public void setUserList(List<User> userList) {
+    public void setUserList(LiveData<List<User>> userList) {
         this.userList = userList;
     }
 
     public void addNewUserRegistered(User user) {
-        userList.add(user);
+        userList.getValue().add(user);
         notifyDataSetChanged();
     }
 
@@ -32,7 +33,7 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        User user = userList.get(position);
+        User user = userList.getValue().get(position);
 
         ViewHolder viewHolder = (ViewHolder) holder;
         viewHolder.txtName.setText(user.getFirstName());
@@ -41,7 +42,11 @@ public class UserAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return userList.size();
+        if (userList != null) {
+            return userList.getValue().size();
+        }
+
+        return 0;
     }
 
     static final class ViewHolder extends RecyclerView.ViewHolder {
